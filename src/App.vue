@@ -1,28 +1,33 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Hi" />
+  <div>
+    <Header></Header>
+    <router-view />
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import Header from './components/Header.vue';
+import Footer from './components/Footer.vue';
 
 export default {
-  name: 'App',
+  name: 'app',
   components: {
-    HelloWorld,
+    Footer,
+    Header,
   },
 };
 </script>
 
 <style>
+/* @import '/assets/css/style.css'; */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: #f5b759;
+  margin-top: 30px;
 }
 </style>
