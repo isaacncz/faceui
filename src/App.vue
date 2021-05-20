@@ -3,18 +3,21 @@
     <Header></Header>
     <router-view />
     <Footer></Footer>
+    <BubbleChart/>
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue';
 import Footer from './components/Footer.vue';
+import BubbleChart from './components/BubbleChart.vue';
 
 export default {
   name: 'app',
   components: {
     Footer,
     Header,
+    BubbleChart,
   },
 };
 </script>

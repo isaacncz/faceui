@@ -1,4 +1,4 @@
-export const planetChartData = {
+export const bubbleChartData = {
   type: "bubble",
   data: {
     datasets: [
@@ -117,4 +117,4 @@ export const planetChartData = {
   }
 };
 
-export default planetChartData;
+export default bubbleChartData;
