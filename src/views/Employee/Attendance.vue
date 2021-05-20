@@ -1,5 +1,8 @@
 <template>
   <b-container>
+    <h1>
+      Attendance List
+    </h1>
     <b-table
       responsive
       striped
@@ -27,6 +30,10 @@ export default {
       // Note 'isActive' is left out and will not appear in the rendered table
       fields: [
         {
+          key: 'date',
+          sortable: true,
+        },
+        {
           key: 'id',
           sortable: true,
         },
@@ -35,19 +42,11 @@ export default {
           sortable: true,
         },
         {
-          key: 'email',
+          key: 'emotion',
           sortable: true,
         },
         {
-          key: 'department',
-          sortable: true,
-        },
-        {
-          key: 'age',
-          sortable: true,
-        },
-        {
-          key: 'date',
+          key: 'action',
           sortable: true,
         },
       ],
@@ -59,7 +58,7 @@ export default {
     this.isBusy = true;
     console.log(location.host);
     axios
-      .get(`${process.env.VUE_APP_ROOT_API}/user/getall`)
+      .get(`${process.env.VUE_APP_ROOT_API}/attendance/getAll`)
       .then((response) => {
         console.log(response.data);
         this.items = response.data;
