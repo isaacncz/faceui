@@ -1,5 +1,8 @@
 <template>
   <b-container>
+    <h1>
+      Employee List
+    </h1>
     <b-table
       responsive
       striped
@@ -46,13 +49,8 @@ export default {
           key: 'age',
           sortable: true,
         },
-        {
-          key: 'date',
-          sortable: true,
-        },
       ],
       items: [],
-      cultivar: [],
     };
   },
   created() {

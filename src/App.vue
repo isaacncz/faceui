@@ -3,21 +3,18 @@
     <Header></Header>
     <router-view />
     <Footer></Footer>
-    <PlanetChart/>
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue';
 import Footer from './components/Footer.vue';
-import PlanetChart from './components/PlanetChart.vue';
 
 export default {
   name: 'app',
   components: {
     Footer,
     Header,
-    PlanetChart,
   },
 };
 </script>
