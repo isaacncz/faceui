@@ -95,6 +95,13 @@ export const bubbleChartData = {
     scales: {
       xAxes: [
         {
+          ticks: {
+            display: true,
+            stepSize: 73,
+            max: 365,
+            min: 0
+          }
+        }, {
           scaleLabel: {
             display: true,
             labelString: 'Days'
@@ -105,14 +112,10 @@ export const bubbleChartData = {
         {
           scaleLabel: {
             display: true,
-            labelString: 'Rate of Output'
+            labelString: 'Output Rate'
           }
         }
       ]      
-    }, 
-    title: {
-      display: true,
-      text: 'Performance Chart'
     }
   }
 };
