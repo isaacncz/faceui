@@ -1,5 +1,5 @@
-const ctx = document.getElementById('example');
-const exampleChart = new Chart(ctx, {
+var ctx = document.getElementById('example');
+var exampleChart = new Chart(ctx, {
   type: 'bubble',
   data: [],
   options: {},
