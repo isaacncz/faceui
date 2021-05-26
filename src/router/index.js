@@ -14,7 +14,7 @@ import ForgotPass from '../views/User/UserForgotPass.vue';
 
 import EmployeeRegister from '../views/Employee/Register.vue';
 import EmployeeList from '../views/Employee/List.vue';
-import EmployeePerformance from '../views/Employee/Performance.vue';
+import EmployeePerformance from '../views/Employee/Performance2.vue';
 import EmployeeAttendance from '../views/Employee/Attendance.vue';
 import EmployeePerformanceForm from '../views/Employee/PerformanceForm.vue';
 

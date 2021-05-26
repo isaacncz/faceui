@@ -1,18 +1,18 @@
 <script>
-import { Bar, mixins } from 'vue-chartjs'
-const { reactiveProp } = mixins
+import { Bar, mixins } from 'vue-chartjs';
+const { reactiveProp } = mixins;
 export default {
   extends: Bar,
   mixins: [reactiveProp],
   props: {
     chartData: {
-      type: Array || Object,
-      required: false
+      type: Array,
+      required: false,
     },
     chartLabels: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -21,36 +21,36 @@ export default {
           yAxes: [
             {
               ticks: {
-                beginAtZero: true
+                beginAtZero: true,
               },
               gridLines: {
-                display: true
-              }
-            }
+                display: true,
+              },
+            },
           ],
           xAxes: [
             {
               gridLines: {
-                display: false
-              }
-            }
-          ]
+                display: false,
+              },
+            },
+          ],
         },
         legend: {
-          display: false
+          display: false,
         },
         responsive: true,
         animation: {
           // duration: 10,
-          easing: 'easeOutQuad'
+          easing: 'easeOutQuad',
         },
         maintainAspectRatio: false,
         title: {
           display: true,
-          text: 'Harvest'
-        }
-      }
-    }
+          text: 'Performance',
+        },
+      },
+    };
   },
   mounted() {
     this.renderChart(
@@ -59,17 +59,17 @@ export default {
         datasets: [
           {
             label: 'Quantity',
-            borderColor: '#FFA500',
+            borderColor: '#63C5DA',
             pointBackgroundColor: 'black',
             borderWidth: 1,
-            pointBorderColor: '#FFA500',
-            backgroundColor: '#FFA500',
-            data: this.chartData
-          }
-        ]
+            pointBorderColor: '#63C5DA',
+            backgroundColor: '#63C5DA',
+            data: this.chartData,
+          },
+        ],
       },
       this.options
-    )
-  }
-}
+    );
+  },
+};
 </script>
