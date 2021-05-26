@@ -15,7 +15,8 @@ import ForgotPass from '../views/User/UserForgotPass.vue';
 import EmployeeRegister from '../views/Employee/Register.vue';
 import EmployeeList from '../views/Employee/List.vue';
 import EmployeePerformance from '../views/Employee/Performance.vue';
-import EmployeeAttedance from '../views/Employee/Attendance.vue';
+import EmployeeAttendance from '../views/Employee/Attendance.vue';
+import EmployeePerformanceForm from '../views/Employee/PerformanceForm.vue';
 
 Vue.use(VueRouter);
 
@@ -81,8 +82,13 @@ const routes = [
   },
   {
     path: '/employee/attendance',
-    name: 'EmployeeAttedance',
-    component: EmployeeAttedance,
+    name: 'EmployeeAttendance',
+    component: EmployeeAttendance,
+  },
+  {
+    path: '/employee/performance/form',
+    name: 'EmployeePerformanceForm',
+    component: EmployeePerformanceForm,
   },
 ];
 

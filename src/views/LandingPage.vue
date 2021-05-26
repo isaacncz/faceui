@@ -69,6 +69,22 @@
           </div>
         </div>
       </div>
+      <div class="col-sm-2">
+        <div class="card card-landing-2">
+          <div class="text-center" style="margin-top: 6px;">
+            <b-link to="/employee/performance/form">
+              <img
+                src="https://cdn.iconscout.com/icon/premium/png-256-thumb/performance-68-739441.png"
+                style="width: 35%;"
+              />
+            </b-link>
+            <h4 class="landing-sub" style="margin-top: 12px;">
+              Performance Form
+            </h4>
+            <p class="caption-2">to key in employee daily performance</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!--/row -->
