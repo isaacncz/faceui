@@ -49,9 +49,8 @@
         <b-alert show variant="danger">{{ nodataMessage }}</b-alert>
       </div>
       <hr />
-      <div class="Chart__container" v-if="loaded">
-        <line-chart :chartLabels="chartlabels" :chartData="chartdata" 
-          :chartAngry="chartangry" :chartAngryLabels="chartangrylabels" :chartAngryData="chartangrydata"
+      <div class="Bubble__container" v-if="loaded">
+        <bubble-chart :chartAngry="chartangry" :chartAngryLabels="chartangrylabels" :chartAngryData="chartangrydata"
           :chartDisgust="chartdisgust" :chartDisgustLabels="chartdisgustlabels" :chartDisgustData="chartdisgustdata"
           :chartFearful="chartfearful" :chartFearfulLabels="chartfearfullabels" :chartFearfulData="chartfearfuldata"
           :chartSad="chartsad" :chartSadLabels="chartsadlabels" :chartSadData="chartsaddata"
@@ -65,10 +64,10 @@
 
 <script>
 import axios from 'axios';
-import LineChart from '../../components/LineChart.vue';
+import BubbleChart from '../../components/BubbleChart.vue';
 export default {
-  name: 'LineChartContainer',
-  components: { LineChart },
+  name: 'BubbleChartContainer',
+  components: { BubbleChart },
   props: {},
   data() {
     return {
@@ -83,10 +82,7 @@ export default {
       errorMessage: 'Please enter field',
       nodataMessage: 'No data',
       nameSelected: '',
-<<<<<<< HEAD
-      namelist: ['Isaac', 'Nelson', 'LEE GE SENN'],
-=======
-      namelist: ['Isaac', 'Nelson'],
+      namelist: ['Isaac', 'Nelson Yau'],
       datelist: [
         '01/2021',
         '02/2021',
@@ -101,7 +97,6 @@ export default {
         '11/2021',
         '12/2021',
       ],
->>>>>>> d40b667b1b95404473faf7d7af8de2dfe0774b73
     };
   },
   methods: {
@@ -119,51 +114,42 @@ export default {
 
       this.resetState();
       const x = await axios.get(
-<<<<<<< HEAD
-        //`${process.env.VUE_APP_ROOT_API}/attendance/get?date=2021&name=Isaac`,
-        //`${process.env.VUE_APP_ROOT_API}/attendance/get?date=2021&name=Nelson`,
-        `${process.env.VUE_APP_ROOT_API}/attendance/get?date=2021&name=LEE%20GE%20SENN`, //pass parameters here
-=======
         `${process.env.VUE_APP_ROOT_API}/attendance/get?date=${this.startDate}&name=${this.nameSelected}` //pass parameters here
->>>>>>> d40b667b1b95404473faf7d7af8de2dfe0774b73
       );
 
       try {
-        console.log(x.data);
-        this.chartlabels = x.data.map((e) => e.date); //load data here
-        this.chartdata = x.data.map((e) => e.output); //load data here
-        
-        this.chartangry = x.data.filter((e) => e.emotion == "angry");
-        this.chartangrylabels = this.chartangry.map((b) => b.date);
-        this.chartangrydata = this.chartangry.map((b) => b.output);
+        console.log(x.data);     
+        this.chartangry = x.data.filter((e) => e.emotion == "angry");               //load data here
+        this.chartangrylabels = this.chartangry.map((b) => b.date.substr(0, 2));    //load data here
+        this.chartangrydata = this.chartangry.map((b) => b.output);                 //load data here
 
         this.chartdisgust = x.data.filter((e) => e.emotion == "disgust");
-        this.chartdisgustlabels = this.chartdisgust.map((b) => b.date);
+        this.chartdisgustlabels = this.chartdisgust.map((b) => b.date.substr(0, 2));
         this.chartdisgustdata = this.chartdisgust.map((b) => b.output);
 
         this.chartfearful = x.data.filter((e) => e.emotion == "fearful");
-        this.chartfearfullabels = this.chartfearful.map((b) => b.date);
+        this.chartfearfullabels = this.chartfearful.map((b) => b.date.substr(0, 2));
         this.chartfearfuldata = this.chartfearful.map((b) => b.output);
 
         this.chartsad = x.data.filter((e) => e.emotion == "sad");
-        this.chartsadlabels = this.chartsad.map((b) => b.date);
+        this.chartsadlabels = this.chartsad.map((b) => b.date.substr(0, 2));
         this.chartsaddata = this.chartsad.map((b) => b.output);
 
         this.chartneutral = x.data.filter((e) => e.emotion == "neutral");
-        this.chartneutrallabels = this.chartneutral.map((a) => a.date);
+        this.chartneutrallabels = this.chartneutral.map((a) => a.date.substr(0, 2));
         this.chartneutraldata = this.chartneutral.map((a) => a.output);
 
         this.charthappy = x.data.filter((e) => e.emotion == "happy");
-        this.charthappylabels = this.charthappy.map((a) => a.date);
+        this.charthappylabels = this.charthappy.map((a) => a.date.substr(0, 2));
         this.charthappydata = this.charthappy.map((a) => a.output);
 
         this.chartsurprised = x.data.filter((e) => e.emotion == "surprised");
-        this.chartsurprisedlabels = this.chartsurprised.map((a) => a.date);
+        this.chartsurprisedlabels = this.chartsurprised.map((a) => a.date.substr(0, 2));
         this.chartsurpriseddata = this.chartsurprised.map((a) => a.output);
 
-        //console.log(this.chartneutral);
-        //console.log(this.chartneutrallabels);
-        //console.log(this.chartneutraldata);
+        //console.log(this.chartsad);
+        //console.log(this.chartsadlabels);
+        //console.log(this.chartsaddata);
 
         this.busy = false;
         this.nodataError = false;
