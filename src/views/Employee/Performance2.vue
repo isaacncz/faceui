@@ -5,12 +5,14 @@
       <div class="container-fluid">
         <b-row class="mb-3">
           <b-col cols="12" md="auto">
-            Date
-            <b-form-datepicker
-              v-model="startDate"
-              placeholder="Date"
-              local="en"
-            ></b-form-datepicker>
+            Month
+            <b-form-select v-model="startDate" :options="datelist">
+              <template #first>
+                <b-form-select-option :value="null" disabled
+                  >-- Please select a month --</b-form-select-option
+                >
+              </template>
+            </b-form-select>
           </b-col>
           <b-col cols="12" md="auto">
             Name
@@ -81,7 +83,25 @@ export default {
       errorMessage: 'Please enter field',
       nodataMessage: 'No data',
       nameSelected: '',
+<<<<<<< HEAD
       namelist: ['Isaac', 'Nelson', 'LEE GE SENN'],
+=======
+      namelist: ['Isaac', 'Nelson'],
+      datelist: [
+        '01/2021',
+        '02/2021',
+        '03/2021',
+        '04/2021',
+        '05/2021',
+        '06/2021',
+        '07/2021',
+        '08/2021',
+        '09/2021',
+        '10/2021',
+        '11/2021',
+        '12/2021',
+      ],
+>>>>>>> d40b667b1b95404473faf7d7af8de2dfe0774b73
     };
   },
   methods: {
@@ -99,9 +119,13 @@ export default {
 
       this.resetState();
       const x = await axios.get(
+<<<<<<< HEAD
         //`${process.env.VUE_APP_ROOT_API}/attendance/get?date=2021&name=Isaac`,
         //`${process.env.VUE_APP_ROOT_API}/attendance/get?date=2021&name=Nelson`,
         `${process.env.VUE_APP_ROOT_API}/attendance/get?date=2021&name=LEE%20GE%20SENN`, //pass parameters here
+=======
+        `${process.env.VUE_APP_ROOT_API}/attendance/get?date=${this.startDate}&name=${this.nameSelected}` //pass parameters here
+>>>>>>> d40b667b1b95404473faf7d7af8de2dfe0774b73
       );
 
       try {
