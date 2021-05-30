@@ -48,7 +48,14 @@
       </div>
       <hr />
       <div class="Chart__container" v-if="loaded">
-        <line-chart :chartLabels="chartlabels" :chartData="chartdata" />
+        <line-chart :chartLabels="chartlabels" :chartData="chartdata" 
+          :chartAngry="chartangry" :chartAngryLabels="chartangrylabels" :chartAngryData="chartangrydata"
+          :chartDisgust="chartdisgust" :chartDisgustLabels="chartdisgustlabels" :chartDisgustData="chartdisgustdata"
+          :chartFearful="chartfearful" :chartFearfulLabels="chartfearfullabels" :chartFearfulData="chartfearfuldata"
+          :chartSad="chartsad" :chartSadLabels="chartsadlabels" :chartSadData="chartsaddata"
+          :chartNeutral="chartneutral" :chartNeutralLabels="chartneutrallabels" :chartNeutralData="chartneutraldata"
+          :chartHappy="charthappy" :chartHappyLabels="charthappylabels" :chartHappyData="charthappydata"
+          :chartSurprised="chartsurprised" :chartSurprisedLabels="chartsurprisedlabels" :chartSurprisedData="chartsurpriseddata"/>
       </div>
     </div>
   </div>
@@ -68,12 +75,13 @@ export default {
       loaded: false,
       chartdata: [],
       chartlabels: [],
+      chartemotion: [],
       showError: false,
       nodataError: false,
       errorMessage: 'Please enter field',
       nodataMessage: 'No data',
       nameSelected: '',
-      namelist: ['Isaac', 'Nelson'],
+      namelist: ['Isaac', 'Nelson', 'LEE GE SENN'],
     };
   },
   methods: {
@@ -91,13 +99,47 @@ export default {
 
       this.resetState();
       const x = await axios.get(
-        `${process.env.VUE_APP_ROOT_API}/attendance/get?date=2021&name=Isaac` //pass parameters here
+        //`${process.env.VUE_APP_ROOT_API}/attendance/get?date=2021&name=Isaac`,
+        //`${process.env.VUE_APP_ROOT_API}/attendance/get?date=2021&name=Nelson`,
+        `${process.env.VUE_APP_ROOT_API}/attendance/get?date=2021&name=LEE%20GE%20SENN`, //pass parameters here
       );
 
       try {
         console.log(x.data);
         this.chartlabels = x.data.map((e) => e.date); //load data here
         this.chartdata = x.data.map((e) => e.output); //load data here
+        
+        this.chartangry = x.data.filter((e) => e.emotion == "angry");
+        this.chartangrylabels = this.chartangry.map((b) => b.date);
+        this.chartangrydata = this.chartangry.map((b) => b.output);
+
+        this.chartdisgust = x.data.filter((e) => e.emotion == "disgust");
+        this.chartdisgustlabels = this.chartdisgust.map((b) => b.date);
+        this.chartdisgustdata = this.chartdisgust.map((b) => b.output);
+
+        this.chartfearful = x.data.filter((e) => e.emotion == "fearful");
+        this.chartfearfullabels = this.chartfearful.map((b) => b.date);
+        this.chartfearfuldata = this.chartfearful.map((b) => b.output);
+
+        this.chartsad = x.data.filter((e) => e.emotion == "sad");
+        this.chartsadlabels = this.chartsad.map((b) => b.date);
+        this.chartsaddata = this.chartsad.map((b) => b.output);
+
+        this.chartneutral = x.data.filter((e) => e.emotion == "neutral");
+        this.chartneutrallabels = this.chartneutral.map((a) => a.date);
+        this.chartneutraldata = this.chartneutral.map((a) => a.output);
+
+        this.charthappy = x.data.filter((e) => e.emotion == "happy");
+        this.charthappylabels = this.charthappy.map((a) => a.date);
+        this.charthappydata = this.charthappy.map((a) => a.output);
+
+        this.chartsurprised = x.data.filter((e) => e.emotion == "surprised");
+        this.chartsurprisedlabels = this.chartsurprised.map((a) => a.date);
+        this.chartsurpriseddata = this.chartsurprised.map((a) => a.output);
+
+        //console.log(this.chartneutral);
+        //console.log(this.chartneutrallabels);
+        //console.log(this.chartneutraldata);
 
         this.busy = false;
         this.nodataError = false;
