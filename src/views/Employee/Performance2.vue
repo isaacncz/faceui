@@ -50,13 +50,29 @@
       </div>
       <hr />
       <div class="Bubble__container" v-if="loaded">
-        <bubble-chart :chartAngry="chartangry" :chartAngryLabels="chartangrylabels" :chartAngryData="chartangrydata"
-          :chartDisgust="chartdisgust" :chartDisgustLabels="chartdisgustlabels" :chartDisgustData="chartdisgustdata"
-          :chartFearful="chartfearful" :chartFearfulLabels="chartfearfullabels" :chartFearfulData="chartfearfuldata"
-          :chartSad="chartsad" :chartSadLabels="chartsadlabels" :chartSadData="chartsaddata"
-          :chartNeutral="chartneutral" :chartNeutralLabels="chartneutrallabels" :chartNeutralData="chartneutraldata"
-          :chartHappy="charthappy" :chartHappyLabels="charthappylabels" :chartHappyData="charthappydata"
-          :chartSurprised="chartsurprised" :chartSurprisedLabels="chartsurprisedlabels" :chartSurprisedData="chartsurpriseddata"/>
+        <bubble-chart
+          :chartAngry="chartangry"
+          :chartAngryLabels="chartangrylabels"
+          :chartAngryData="chartangrydata"
+          :chartDisgust="chartdisgust"
+          :chartDisgustLabels="chartdisgustlabels"
+          :chartDisgustData="chartdisgustdata"
+          :chartFearful="chartfearful"
+          :chartFearfulLabels="chartfearfullabels"
+          :chartFearfulData="chartfearfuldata"
+          :chartSad="chartsad"
+          :chartSadLabels="chartsadlabels"
+          :chartSadData="chartsaddata"
+          :chartNeutral="chartneutral"
+          :chartNeutralLabels="chartneutrallabels"
+          :chartNeutralData="chartneutraldata"
+          :chartHappy="charthappy"
+          :chartHappyLabels="charthappylabels"
+          :chartHappyData="charthappydata"
+          :chartSurprised="chartsurprised"
+          :chartSurprisedLabels="chartsurprisedlabels"
+          :chartSurprisedData="chartsurpriseddata"
+        />
       </div>
     </div>
   </div>
@@ -82,7 +98,7 @@ export default {
       errorMessage: 'Please enter field',
       nodataMessage: 'No data',
       nameSelected: '',
-      namelist: ['Isaac', 'Nelson Yau'],
+      namelist: ['Isaac', 'Nelson Yau', 'Ge Senn', 'Wan Chin'],
       datelist: [
         '01/2021',
         '02/2021',
@@ -118,33 +134,41 @@ export default {
       );
 
       try {
-        console.log(x.data);     
-        this.chartangry = x.data.filter((e) => e.emotion == "angry");               //load data here
-        this.chartangrylabels = this.chartangry.map((b) => b.date.substr(0, 2));    //load data here
-        this.chartangrydata = this.chartangry.map((b) => b.output);                 //load data here
+        console.log(x.data);
+        this.chartangry = x.data.filter((e) => e.emotion == 'angry'); //load data here
+        this.chartangrylabels = this.chartangry.map((b) => b.date.substr(0, 2)); //load data here
+        this.chartangrydata = this.chartangry.map((b) => b.output); //load data here
 
-        this.chartdisgust = x.data.filter((e) => e.emotion == "disgust");
-        this.chartdisgustlabels = this.chartdisgust.map((b) => b.date.substr(0, 2));
+        this.chartdisgust = x.data.filter((e) => e.emotion == 'disgust');
+        this.chartdisgustlabels = this.chartdisgust.map((b) =>
+          b.date.substr(0, 2)
+        );
         this.chartdisgustdata = this.chartdisgust.map((b) => b.output);
 
-        this.chartfearful = x.data.filter((e) => e.emotion == "fearful");
-        this.chartfearfullabels = this.chartfearful.map((b) => b.date.substr(0, 2));
+        this.chartfearful = x.data.filter((e) => e.emotion == 'fearful');
+        this.chartfearfullabels = this.chartfearful.map((b) =>
+          b.date.substr(0, 2)
+        );
         this.chartfearfuldata = this.chartfearful.map((b) => b.output);
 
-        this.chartsad = x.data.filter((e) => e.emotion == "sad");
+        this.chartsad = x.data.filter((e) => e.emotion == 'sad');
         this.chartsadlabels = this.chartsad.map((b) => b.date.substr(0, 2));
         this.chartsaddata = this.chartsad.map((b) => b.output);
 
-        this.chartneutral = x.data.filter((e) => e.emotion == "neutral");
-        this.chartneutrallabels = this.chartneutral.map((a) => a.date.substr(0, 2));
+        this.chartneutral = x.data.filter((e) => e.emotion == 'neutral');
+        this.chartneutrallabels = this.chartneutral.map((a) =>
+          a.date.substr(0, 2)
+        );
         this.chartneutraldata = this.chartneutral.map((a) => a.output);
 
-        this.charthappy = x.data.filter((e) => e.emotion == "happy");
+        this.charthappy = x.data.filter((e) => e.emotion == 'happy');
         this.charthappylabels = this.charthappy.map((a) => a.date.substr(0, 2));
         this.charthappydata = this.charthappy.map((a) => a.output);
 
-        this.chartsurprised = x.data.filter((e) => e.emotion == "surprised");
-        this.chartsurprisedlabels = this.chartsurprised.map((a) => a.date.substr(0, 2));
+        this.chartsurprised = x.data.filter((e) => e.emotion == 'surprised');
+        this.chartsurprisedlabels = this.chartsurprised.map((a) =>
+          a.date.substr(0, 2)
+        );
         this.chartsurpriseddata = this.chartsurprised.map((a) => a.output);
 
         //console.log(this.chartsad);
