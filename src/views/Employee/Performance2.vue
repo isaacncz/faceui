@@ -74,6 +74,11 @@
           :chartSurprisedData="chartsurpriseddata"
         />
       </div>
+      <div class="Container">
+        <line-chart v-if="loaded" :chartLabels="chartLabelsW" :chartData="chartDataW" />
+        <line-chart v-if="loaded" :chartLabels="chartLabelsOT" :chartData="chartDataOT" />
+
+      </div>
     </div>
   </div>
 </template>
@@ -81,17 +86,18 @@
 <script>
 import axios from 'axios';
 import BubbleChart from '../../components/BubbleChart.vue';
+import LineChart from '../../components/LineChart.vue';
 export default {
-  name: 'BubbleChartContainer',
-  components: { BubbleChart },
+  name: 'Container',
+  components: { 'BubbleChart':BubbleChart,'LineChart':LineChart},
   props: {},
   data() {
     return {
       busy: false,
       startDate: null,
       loaded: false,
-      chartdata: [],
-      chartlabels: [],
+      chartLabels: [],
+      chartData: [],
       chartemotion: [],
       showError: false,
       nodataError: false,
@@ -115,6 +121,7 @@ export default {
       ],
     };
   },
+  
   methods: {
     resetState() {
       this.loaded = false;
@@ -131,6 +138,10 @@ export default {
       this.resetState();
       const x = await axios.get(
         `${process.env.VUE_APP_ROOT_API}/attendance/get?date=${this.startDate}&name=${this.nameSelected}` //pass parameters here
+      );
+
+      const y = await axios.get(
+        `${process.env.VUE_APP_ROOT_API2}/api/ot?id=${this.nameSelected}&startdate=${this.startDate}` //pass parameters here
       );
 
       try {
@@ -175,14 +186,24 @@ export default {
         //console.log(this.chartsadlabels);
         //console.log(this.chartsaddata);
 
+        console.log(y.data);
+        this.chartLabelsW = y.data.date; //load data here
+        this.chartDataW = y.data.workHour; //load data here
+
+        this.chartLabelsOT = y.data.date; //load data here
+        this.chartDataOT = y.data.workOT; //load data here
+
         this.busy = false;
         this.nodataError = false;
         this.loaded = true;
+
       } catch (err) {
         this.errorMessage = err.response.data.error;
         this.showError = true;
         this.busy = false;
       }
+
+
     },
     toggleBusy() {
       this.isBusy = !this.isBusy;
