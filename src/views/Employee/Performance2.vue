@@ -75,8 +75,8 @@
         />
       </div>
       <div class="Container">
-        <line-chart v-if="loaded" :chartLabels="chartLabelsW" :chartData="chartDataW" />
-        <line-chart v-if="loaded" :chartLabels="chartLabelsOT" :chartData="chartDataOT" />
+        <line-chart v-if="loaded" :chartLabels="chartLabelsW" :chartData="chartDataW" :chartTitle="chartTitleW"/>
+        <line-chart v-if="loaded" :chartLabels="chartLabelsOT" :chartData="chartDataOT" :chartTitle="chartTitleOT"/>
 
       </div>
     </div>
@@ -189,9 +189,11 @@ export default {
         console.log(y.data);
         this.chartLabelsW = y.data.date; //load data here
         this.chartDataW = y.data.workHour; //load data here
+        this.chartTitleW = 'Work Hour By Day';
 
         this.chartLabelsOT = y.data.date; //load data here
         this.chartDataOT = y.data.workOT; //load data here
+        this.chartTitleOT = 'Work Overtime By Day';
 
         this.busy = false;
         this.nodataError = false;
