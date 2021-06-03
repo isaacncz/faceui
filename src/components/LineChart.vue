@@ -13,6 +13,10 @@ export default {
       type: Array,
       required: true,
     },
+    chartTitle: {
+      type: String,
+      required: true,
+    },
   },
   data() {
     return {
@@ -47,7 +51,7 @@ export default {
         maintainAspectRatio: false,
         title: {
           display: true,
-          text: 'Work Hour By Day',
+          text: this.chartTitle,
         },
       },
     };
